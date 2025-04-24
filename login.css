@@ -1,0 +1,41 @@
+/* login.css - Login sahifasi uchun maxsus stillar */
+#loginForm {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.password-container {
+    position: relative;
+}
+
+.show-password {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    cursor: pointer;
+    color: #7f8c8d;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(1); }
+}
+.message-box {
+    margin-bottom: 15px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+    display: none;
+}
+
+.message-box.error {
+    background-color: #ffe6e6;
+    color: #cc0000;
+    border: 1px solid #cc0000;
+}
+
+.message-box.success {
+    background-color: #e6ffe6;
+    color: #006600;
+    border: 1px solid #006600;
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberSec Background</title>
+  <style>
+    /* Reset & Basic Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Background Particles Container */
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    }
+
+    /* Cyber text container */
+    .cyber-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #00ffe0;
+      text-align: center;
+      width: 80%;
+      max-width: 800px;
+    }
+
+    .cyber-title {
+      font-size: 48px;
+      font-weight: bold;
+      text-shadow: 0 0 10px #00ffe0;
+      margin-bottom: 20px;
+    }
+
+    .cyber-subtitle {
+      font-size: 24px;
+      margin-bottom: 30px;
+      text-shadow: 0 0 5px #00ffe0;
+    }
+
+    .cyber-text {
+      font-size: 20px;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    /* Home Link Styles */
+    .home-link {
+      display: inline-block;
+      padding: 12px 30px;
+      background: transparent;
+      color: #00ffe0;
+      border: 2px solid #00ffe0;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 255, 224, 0.3);
+    }
+
+    .home-link:hover {
+      background: #00ffe0;
+      color: #0f2027;
+      box-shadow: 0 0 20px rgba(0, 255, 224, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .home-link:active {
+      transform: translateY(0);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 320px) {
+      .cyber-title {
+        font-size: 30px;
+      }
+
+      .cyber-subtitle {
+        font-size: 18px;
+      }
+
+      .cyber-text {
+        font-size: 16px;
+      }
+
+      .home-link {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (min-width: 321px) and (max-width: 768px) {
+      .cyber-title {
+        font-size: 40px;
+      }
+
+      .cyber-subtitle {
+        font-size: 20px;
+      }
+
+      .cyber-text {
+        font-size: 18px;
+      }
+
+      .home-link {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .cyber-title {
+        font-size: 48px;
+      }
+
+      .cyber-subtitle {
+        font-size: 24px;
+      }
+
+      .cyber-text {
+        font-size: 20px;
+      }
+
+      .home-link {
+        padding: 12px 30px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Animation -->
+  <div id="particles-js"></div>
+
+  <!-- Cyber Content -->
+  <div class="cyber-content">
+    <h1 class="cyber-title">Cyber Security</h1>
+    <p class="cyber-text">Men 073-21 guruh talabasi ...................</p>
+    <h2 class="cyber-subtitle">Mening Web-sahifamga xush kelibsiz</h2>
+    
+    <a href="index.html" class="home-link">Home</a>
+  </div>
+
+  <!-- Particles.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <!-- Particles Config -->
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#00ffe0" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#00ffe0",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 1 } },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
+
+</body>
+</html>

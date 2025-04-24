@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirish</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="login.css"> -->
+    <link rel="stylesheet" href="new.css">
+</head>
+<body>
+    <form id="loginForm">
+
+        <!-- 🔥 SHU YERDA XABAR CHIQADI -->
+        <div id="messageBox" class="message-box"></div>
+
+        <h1>Kirish</h1>
+        
+        <input type="text" name="username" placeholder="Foydalanuvchi nomi" required>
+        
+        <div class="password-container">
+            <input type="password" name="password" id="password" placeholder="Parol" required>
+            <span class="show-password" id="togglePassword">👁️</span>
+        </div>
+        
+        <div class="captcha-container">
+            <img id="captchaImage" class="captcha-image" src="" alt="CAPTCHA">
+            <button type="button" id="refreshCaptcha">↻</button>
+            <input type="text" name="captcha_value" placeholder="CAPTCHA" required>
+            <input type="hidden" name="captcha_key" id="captchaKey">
+        </div>
+        
+        <button type="submit">Kirish</button>
+        
+        <div class="form-footer">
+            Hisobingiz yo'qmi? <a href="register.html">Ro'yxatdan o'tish</a>
+        </div>
+    </form>
+
+    <script src="login.js"></script>
+</body>
+</html>

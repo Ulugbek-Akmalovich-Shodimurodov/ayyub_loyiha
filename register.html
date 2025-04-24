@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro'yxatdan o'tish</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="register.css"> -->
+    <link rel="stylesheet" href="new.css">
+    <style>
+        .password-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        #regPassword, #confirmPassword {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .show-password {
+            position: absolute;
+            right: 10px;
+            top: 35%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .password-mismatch {
+            border-color: #ff4444 !important;
+        }
+        
+        .password-match {
+            border-color: #00C851 !important;
+        }
+        
+        .error-message {
+            color: #ff4444;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .captcha-display {
+            padding: 8px 15px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 18px;
+            letter-spacing: 2px;
+            user-select: none;
+        }
+
+        .captchaImage{
+            height: 50px !important;
+        }
+        
+        .captcha-container input[type="text"] {
+            flex: 1;
+            padding: 10px 15px;
+            margin: 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .captcha-refresh {
+            padding: 10px 12px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .captcha-refresh:hover {
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="registerForm">
+        <h1>Ro'yxatdan o'tish</h1>
+        
+        <input type="text" name="username" placeholder="Foydalanuvchi nomi" required>
+        <input type="email" name="email" placeholder="Email" required>
+        
+        <div class="password-container">
+            <input type="password" name="password" id="regPassword" placeholder="Parol" required>
+            <span class="show-password" id="toggleRegPassword">👁️</span>
+        </div>
+        
+        <div class="password-container">
+            <input type="password" id="confirmPassword" placeholder="Parolni tasdiqlang" required>
+            <span class="show-password" id="toggleConfirmPassword">👁️</span>
+            <div id="passwordError" class="error-message">Parollar mos kelmadi!</div>
+        </div>
+        
+        <div id="errorContainer" class="mb-3"></div>
+
+        <div class="captcha-container">
+            <img id="captchaImage" class="captcha-image" src="" alt="CAPTCHA">
+            <button type="button" id="refreshCaptcha">↻</button>
+            <input type="text" name="captcha_value" placeholder="Tasdiqlash kodi" required>
+            <input type="hidden" name="captcha_key" id="captchaKey">
+        </div>
+       
+        <button type="submit" id="submitButton">Ro'yxatdan o'tish</button>
+        
+        <div class="form-footer">
+            Allaqachon hisobingiz bormi? <a href="login.html">Kirish</a>
+        </div>
+    </form>
+
+    <script>
+        // Parolni ko'rsatish/yashirish
+        document.getElementById('toggleRegPassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('regPassword');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                this.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                this.textContent = '👁️';
+            }
+        });
+        
+        document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+            const confirmInput = document.getElementById('confirmPassword');
+            if (confirmInput.type === 'password') {
+                confirmInput.type = 'text';
+                this.textContent = '🙈';
+            } else {
+                confirmInput.type = 'password';
+                this.textContent = '👁️';
+            }
+        });
+        
+        // CAPTCHA yangilash
+        document.getElementById('refreshCaptcha').addEventListener('click', function() {
+            // In a real implementation, this would fetch a new CAPTCHA from the server
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let newCaptcha = '';
+            for (let i = 0; i < 4; i++) {
+                newCaptcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.querySelector('.captcha-display').textContent = newCaptcha;
+        });
+        
+        // Parollarni solishtirish
+        const passwordInput = document.getElementById('regPassword');
+        const confirmInput = document.getElementById('confirmPassword');
+        const passwordError = document.getElementById('passwordError');
+        const submitButton = document.getElementById('submitButton');
+        
+        function checkPasswordMatch() {
+            if (passwordInput.value !== confirmInput.value) {
+                confirmInput.classList.add('password-mismatch');
+                confirmInput.classList.remove('password-match');
+                passwordError.style.display = 'block';
+                submitButton.disabled = true;
+            } else {
+                confirmInput.classList.remove('password-mismatch');
+                confirmInput.classList.add('password-match');
+                passwordError.style.display = 'none';
+                submitButton.disabled = false;
+            }
+            
+            if (confirmInput.value === '') {
+                confirmInput.classList.remove('password-mismatch');
+                confirmInput.classList.remove('password-match');
+                passwordError.style.display = 'none';
+            }
+        }
+        
+        passwordInput.addEventListener('input', checkPasswordMatch);
+        confirmInput.addEventListener('input', checkPasswordMatch);
+        
+        // Formani yuborishni tekshirish
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            if (passwordInput.value !== confirmInput.value) {
+                e.preventDefault();
+                passwordError.style.display = 'block';
+                confirmInput.classList.add('password-mismatch');
+                confirmInput.focus();
+            }
+        });
+    </script>
+
+    <script src="register.js"></script>
+</body>
+</html>

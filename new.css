@@ -1,0 +1,215 @@
+/* ===== Global Styles for Login and Register Pages ===== */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', monospace;
+    background: radial-gradient(circle at center, #001f1f 0%, #000c0c 100%);
+    background-size: cover;
+    background-attachment: fixed;
+    color: #00ff99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-radial-gradient(circle at center, #00ff99 0%, transparent 15%);
+    animation: neonPulse 8s linear infinite;
+    opacity: 0.03;
+    z-index: 0;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #001f1f 0%, #003333 100%);
+    opacity: 0.9;
+    z-index: -1;
+}
+
+form {
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #00ff99;
+    width: 100%;
+    max-width: 450px;
+    animation: fadeIn 0.5s ease-in-out;
+    position: relative;
+    z-index: 1;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    background: #00000099;
+    border: 1px solid #00ff99;
+    color: #00ff99;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:hover,
+input:focus {
+    box-shadow: 0 0 10px #00ff99;
+}
+
+button {
+    padding: 0.5rem;
+    background-color: #00ff99;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 2px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00ff99;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #00cc88;
+    box-shadow: 0 0 1px #00ff99;
+}
+
+/* === Login Specific Styles === */
+
+#loginForm {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.password-container {
+    position: relative;
+}
+
+.show-password {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    cursor: pointer;
+    color: #7f8c8d;
+}
+
+.message-box {
+    margin-bottom: 15px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+    display: none;
+}
+
+.message-box.error {
+    background-color: #ffe6e6;
+    color: #cc0000;
+    border: 1px solid #cc0000;
+}
+
+.message-box.success {
+    background-color: #e6ffe6;
+    color: #006600;
+    border: 1px solid #006600;
+}
+
+/* === Register Specific Styles === */
+
+#registerForm {
+    animation: slideUp 0.5s ease-in-out;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.password-strength {
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.05);
+    margin-bottom: 15px;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 100%;
+    box-shadow: inset 0 0 5px #00ff99;
+}
+
+.password-strength-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #ff4444;
+    transition: width 0.3s, background-color 0.3s, box-shadow 0.3s;
+}
+
+.password-strength.weak .password-strength-bar {
+    background-color: #ff4444;
+    width: 30%;
+    box-shadow: 0 0 5px #ff4444;
+}
+
+.password-strength.medium .password-strength-bar {
+    background-color: #f1c40f;
+    width: 60%;
+    box-shadow: 0 0 5px #f1c40f;
+}
+
+.password-strength.strong .password-strength-bar {
+    background-color: #00ff99;
+    width: 100%;
+    box-shadow: 0 0 8px #00ff99;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* === Animations === */
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes neonPulse {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.05); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* === Responsive === */
+
+@media (max-width: 480px) {
+    form {
+        padding: 20px;
+    }
+
+    .password-strength {
+        margin-bottom: 10px;
+    }
+
+    .password-strength-bar {
+        height: 4px;
+    }
+}
